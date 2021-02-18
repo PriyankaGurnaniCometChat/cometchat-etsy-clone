@@ -1,0 +1,25 @@
+
+
+.cover{
+  background-color: red;
+  width: auto;
+  height: 695px;
+  background-image: url('/src/assets/img/bg.jpeg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.head-card{
+  background-image: url('/src/assets/img/product.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.intro-sec{
+  width: 600px;
+  height: 150px;
+  background: white;
+  border-radius: 30px 30px 0 0 ;
+  margin-top: -60px;
+  z-index: 1;
+}
