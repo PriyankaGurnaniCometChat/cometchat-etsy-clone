@@ -3,6 +3,11 @@ import { Link } from 'react-router-dom';
 import { Col, Container, Button,Navbar, Nav, ListGroup,Form, FormControl, Card, CardDeck, Row} from 'react-bootstrap';
 import styled from 'styled-components';
 import productImg from '../assets/img/Juice.jpg'
+import product1 from '../assets/img/product1.jpg'
+import product2 from '../assets/img/product2.jpg'
+import product3 from '../assets/img/product3.jpg'
+import product4 from '../assets/img/product4.jpg'
+
 import {CometChat} from "@cometchat-pro/chat"
 
 const Styles = styled.div `
@@ -19,11 +24,11 @@ const Styles = styled.div `
 .card-deck .card{
     margin-right: 0;
     margin-left: 0;
-    border: none;
 }
 .top-card{
     height: 250px;
     width: 300px;
+    background-color: rgb(221, 235, 227);
 
 }
 .card{
@@ -64,8 +69,6 @@ React.useEffect(()=>{
 },[])
     return (
         <Styles>
-           
-            
             <Navbar bg="white" expand="lg" className="p-4">
                 <Navbar.Brand href="#home">Logo</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -97,92 +100,108 @@ React.useEffect(()=>{
                 <ListGroup.Item>Toys & Entertainment</ListGroup.Item>
                 <ListGroup.Item>Gifts & Gifts Cards</ListGroup.Item>
                 </ListGroup>
-
-                
+                    <div class="deck-color text-center mt-2">
+                        <p className="mt-2">Find things you'll love. Support independent sellers. Only on Etsy.</p>
+                        <h2>Everyday finds</h2>
                     <CardDeck>
-                    <Card className="top-card">
-                        <Card.Body className='head-card'>
-                        <Card.Title>
-                        <span className="price-tag"> <small>67.00</small> </span>
-                        </Card.Title>
-                       
-                        </Card.Body>
-                       
+
+                    <Card className="top-card ">
+                    <img  src={productImg} className="img-border ml-5 mr-5 mt-5" alt="product1"/> 
+                    <Card.Text>Juice</Card.Text>          
+          
                     </Card>
-                    <Card className="top-card">
-                        <Card.Body className='head-card'>
-                        <Card.Title>
-                        <span className="price-tag"> <small>67.00</small> </span>
-                        </Card.Title>
-                       
-                        </Card.Body>
-                       
+                    
+                    <Card className="top-card ">
+                    <img  src={product1} className="img-border ml-5 mr-5 mt-5" alt="product2"/>
+                    <Card.Text>Pillows</Card.Text>          
+           
                     </Card>
-                    <Card className="top-card">
-                        <Card.Body className='head-card'>
-                        <Card.Title>
-                        <span className="price-tag"> <small>67.00</small> </span>
-                        </Card.Title>
-                       
-                        </Card.Body>
-                       
+
+                    <Card className="top-card ">
+                    <img  src={product2} className="img-border ml-5 mr-5 mt-5" alt="product3"/> 
+                    <Card.Text>Body Lotion</Card.Text>          
+          
                     </Card>
-                    <Card className="top-card">
-                        <Card.Body className='head-card'>
-                        <Card.Title>
-                        <span className="price-tag"> <small>67.00</small> </span>
-                        </Card.Title>
-                       
-                        </Card.Body>
-                       
+
+                    <Card className="top-card ">
+                    <img  src={product3} className="img-border ml-5 mr-5 mt-5" alt="product4"/>
+                    <Card.Text>face mask</Card.Text>          
+           
                     </Card>
-                    <Card className="top-card">
-                        <Card.Body className='head-card'>
-                        <Card.Title>
-                        <span className="price-tag"> <small>67.00</small> </span>
-                        </Card.Title>
-                       
-                        </Card.Body>
-                       
+
+                    <Card className="top-card ">
+                    <img  src={product4} className="img-border ml-5 mr-5 mt-5" alt="product5"/> 
+                    <Card.Text>Necklace</Card.Text>          
                     </Card>
                     
                     
                     </CardDeck>
+                    </div>
+                    <Container>            
 
-                   
-                        
-                        <Row className="justify-content-md-center align-items-center">
-                       
-                       <div className="intro-sec text-center">
-                           <div className="m-3" ><small >EDITORS PICK</small></div>
-                           <h4>Holiday decor</h4>
-                           <small>Add a pinch of merry, a dash of cozy, and you/ve got a recipe for a festive home</small>
-                       </div>
+                    <Row className="mt-4">
+                        <h5> Suggested searches</h5> <span className="ml-2">Based on your recent activity</span>
+                    </Row>
+                    <Row>
+                    <CardDeck>
 
+<Card className="m-4">
+<img  src={productImg} className="img-suggested" alt="product6"/> 
+<Card.Text>Juice</Card.Text>          
+
+</Card>
+
+<Card className="m-4">
+<img  src={product1} className="img-suggested" alt="product7"/>
+<Card.Text>Pillows</Card.Text>          
+
+</Card>
+
+<Card>
+<img  src={product2} className="img-suggested" alt="product8"/> 
+<Card.Text>Body Lotion</Card.Text>          
+
+</Card>
+
+<Card className="m-4">
+<img  src={product3} className="img-suggested" alt="product9"/>
+<Card.Text>face mask</Card.Text>          
+
+</Card>
+
+<Card className="m-4">
+<img  src={product4} className="img-suggested" alt="product10"/> 
+<Card.Text>Necklace</Card.Text>          
+</Card>
+
+<Card className="m-4">
+<img  src={product1} className="img-suggested" alt="product11"/> 
+<Card.Text>Necklace</Card.Text>          
+</Card>
+
+<Card className="m-4">
+<img  src={productImg} className="img-suggested" alt="product12"/> 
+<Card.Text>Necklace</Card.Text>          
+</Card>
+
+
+</CardDeck>
+                    </Row>
+                    </Container>
                         
-                        </Row>
-                        
-                        
-                
+                      
 
                     <Container>
+                    <h5>Recently Viewed & More</h5>
+
                         <Row>
-                        {products.map((product)=>(
-                            <Col md={3}>
+                        {products.map((product,i)=>(
+                            <Col md={3} key={i}>
                             <Link to={`/product/${product.id}`}>
-                            <Card className="text-dark">
-                                <Card.Img variant="top" src={productImg} />
+                            <Card className="text-dark img-size">
+                                <Card.Img variant="top" src={product3} />
                                 <Card.Body>
-                                <Card.Text>
-                                   {product.name}
-                                </Card.Text>
-                                <small>{product.user}</small>
-                                <p>
-                                    <i className="fa fa-star"></i>
-                                    <i className="fa fa-star"></i>
-                                    <i className="fa fa-star"></i>(75)
-                                </p>
-                                <small>{product.price}</small>
+                                <b> USD {product.price}</b>
                                 </Card.Body>
                                 
                             </Card>

@@ -4,10 +4,10 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {CometChat} from '@cometchat-pro/chat'
-import {API_REGION, APPID} from './constant/constant'
+import {REGION, APP_ID} from './constant/constant'
 
-var appID = APPID;
-var region = API_REGION
+var appID = APP_ID;
+var region = REGION
 var appSetting = new CometChat.AppSettingsBuilder().subscribePresenceForAllUsers().setRegion(region).build();
 CometChat.init(appID, appSetting).then(
   () => {

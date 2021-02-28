@@ -6,7 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Home } from "./view/Home";
 import { Product } from "./view/Product";
 import {Chat} from "./view/Chat"
-import {Create_Product} from "./view/Create_product"
+import {Create_Product} from "./view/Create_Product"
 
 
 class App extends Component {

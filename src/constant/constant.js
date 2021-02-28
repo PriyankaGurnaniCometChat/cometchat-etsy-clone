@@ -1,3 +1,3 @@
-export const AUTH_KEY = '9d323aec801c0a3c0de9f44df025e7272370903a'
-export const APPID = "2816364baa209f1"
-export const API_REGION = 'us'
+export const AUTH_KEY = '742a6e2ca71c132f63d9569a8ff2455a34bcfcd8'
+export const APP_ID = "30142015683afd2"
+export const REGION = 'us'

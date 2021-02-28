@@ -1,6 +1,5 @@
 import React from "react"
-import {Container,Row} from "react-bootstrap"
-import {CometChatUserListWithMessages} from "../cometchat-pro-react-ui-kit"
+import {CometChatConversationListScreen} from "../cometchat-pro-react-ui-kit"
 import {CometChat} from "@cometchat-pro/chat"
 
 export const Chat = ()=>{
@@ -12,10 +11,8 @@ React.useEffect(()=>{
        refresh()
 },[])
     return(
-        <Container>
-            <Row> 
-                <CometChatUserListWithMessages/>
-            </Row>
-        </Container>
+            <div> 
+                <CometChatConversationListScreen/>
+            </div>
     )
 }

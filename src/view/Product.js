@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Col, Container, Button,Navbar, Nav, ListGroup,Form, FormControl, Card, Row} from 'react-bootstrap';
+import { Col, Container, Button,Navbar, Nav, ListGroup,Form, FormControl, Collapse, Row} from 'react-bootstrap';
 import styled from 'styled-components';
-import productImg from '../assets/img/Juice.jpg'
 import {CometChat} from "@cometchat-pro/chat"
 import { useHistory } from 'react-router'
+import product3 from '../assets/img/product3.jpg'
 
 const Styles = styled.div `
 
@@ -18,18 +18,24 @@ const Styles = styled.div `
     border-radius: 20px;
     background: #EFEFEF;
 } 
+.add-to-cart{
+    width:300px;
+    border-radius:100px;
+}
 
 `
 
 export const Product = ({match}) => {
     const [products, setProducts] = React.useState([])
-    const [messages,setMessages] = React.useState([])
+    const [messages,setMessages] = React.useState([{name:"",sender:""},{}])
     const [message,setMessage]= React.useState('')
     const [active,setActive] = React.useState(false)
+    const [open, setOpen] = React.useState(false);
+
     const history = useHistory()
 
 
-const getProduct = async ()=>{
+const getProduct = React.useCallback(async ()=>{
         
         const response = await fetch(`http://localhost:5000/products/product/${match.params.id}`, {
             method: 'GET',
@@ -41,7 +47,7 @@ const getProduct = async ()=>{
           });
           const datas = await response.json()
           setProducts(datas); 
-    }
+        },[match.params.id])
 
     CometChat.addMessageListener(
         "UNIQUE_LISTENER_ID",
@@ -94,14 +100,13 @@ const chat = () =>{
     if(localStorage.getItem('user') == products.user){
         history.push('/chat')
     }else{
-        console.log("dfa");
-        setActive(true)
+        setActive(!active)
     }
 }
 
 React.useEffect(()=>{
     getProduct()
-},[])
+},[getProduct])
     return (
         <Styles>
            
@@ -139,57 +144,63 @@ React.useEffect(()=>{
                 
                     <Container className="mt-5">
                         <Row>
-                        <Col md={6}>
-                        <Card.Img variant="top" src={productImg} />
+                        <Col md={8}>
+                        <img src={product3} className="product-img" alt="product1"/>
                         </Col>
 
-                        <Col md={6}>
-                        <h3 className="product-title">{products.name}</h3>
-						<div className="rating">
+                        <Col md={4}>
+                            
+                            <div className="rating">
+                            <span>{products.user}</span>
 							<div className="stars">
+                            <span className="review-no">460 sales  </span>
 								<span className="fa fa-star checked"></span>
 								<span className="fa fa-star checked"></span>
 								<span className="fa fa-star checked"></span>
 								<span className="fa fa-star"></span>
 								<span className="fa fa-star"></span>
 							</div>
-							<span className="review-no">460 reviews</span>
-						</div>
-						<p> {products.description}</p>
-						<h4>Current price: <span>{products.price}</span></h4>
-						
-						<div className="action">
-							<Button className="add-to-cart btn btn-default" type="button">Add to cart</Button>
-                            <Button onClick={chat} className="add-to-cart btn btn-default" type="button">Chat</Button>
-
 							
 						</div>
+
+                        <p className="product-title mt-2">{products.name}</p>
+						
+						<h4>USD <span>{products.price}</span></h4>
+                        <h5 onClick={() => setOpen(!open)} className="mt-4 mb-3">Description
+                        <i className={ open===false ? "fa fa-angle-down rotate-icon" : "fa fa-angle-down" } />
+                        </h5>
+                        <Collapse in={open}>
+                        <div id="example-collapse-text">
+                        <p> {products.description}</p>
+                        </div>
+                        </Collapse>
+						<div className="action">
+							<Button className="add-to-cart btn btn-dark" type="button" >Add to cart</Button>
+						</div>
+                        <h5 onClick={chat} className="mt-4 mb-3">Message { localStorage.getItem('user') !== products.user ? products.user: "Users"}
+                        <i className={ active===false ? "fa fa-angle-down " : "fa fa-angle-up" } />
+                        </h5>
+                        <Collapse in={active}>
+                        <div id="example-collapse-text mb-5">
+                        <div className="">
+                            {messages.map((message,i)=>(
+                                <div className="" key={i}>
+                                <p><span><b>{message.sender ? message.sender.name:message.name}:</b></span>{message.text}</p>
+                                </div>
+                            ))}
+                            </div>
+                            
+                            <div className="msg">
+                                <form onSubmit={sendMessage}>   
+                                <input type="text" placeholder="Say something" value={message} onChange={(e)=> setMessage(e.target.value)} />
+                                <button type="submit"> <i className="fa fa-send"></i>  </button>
+                                </form>
+                        </div>
+                        </div>
+                        </Collapse>
                         </Col>
                         </Row>
-
                     </Container>
-{active == true ? 
-                    <Container>
-                        <Row>
-                            <Col md={6}>
-                            <div className="">
-                   {messages.map((message,i)=>(
-                    <div className="" key={i}>
-                    <p><span><b>{message.sender ? message.sender.name:message.name}:</b></span> {message.text}</p>
-                    </div>
-                   ))}
-                   </div>
-                   
-                <div className="msg">
-                    <form onSubmit={sendMessage}>   
-                    <input type="text" placeholder="Say something" value={message} onChange={(e)=> setMessage(e.target.value)} />
-                    <button type="submit"> <i className="fa fa-send"></i>  </button>
-                    </form>
-                   </div>
-                            </Col>
-                        </Row>
-                    </Container>
-               : null}
         </Styles>
     )
 }
