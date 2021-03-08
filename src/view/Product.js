@@ -46,7 +46,22 @@ const getProduct = React.useCallback(async ()=>{
             },
           });
           const datas = await response.json()
-          setProducts(datas); 
+          setProducts(datas);
+
+          let messagesRequest = new CometChat.MessagesRequestBuilder()
+            .setLimit(30)
+            .setUID(datas.user)
+            .hideReplies(true)
+            .build();
+       
+            messagesRequest.fetchPrevious().then(
+                messages => {
+                    setMessages(messages);
+                },
+                error => {
+                    console.log("Message fetching failed with error:", error);
+                }
+            );
         },[match.params.id])
 
     CometChat.addMessageListener(
